@@ -1,19 +1,18 @@
 package com.sambuini.auth.service;
 
 import com.sambuini.auth.dto.CredentialDTO;
-import com.sambuini.auth.dto.LoginDTO;
 import com.sambuini.auth.entity.Credential;
 import com.sambuini.auth.entity.SessionToken;
 import com.sambuini.auth.mapper.CredentialMapper;
 import com.sambuini.auth.repository.CredentialRepository;
-import org.apache.commons.lang3.StringUtils;
+import com.sambuini.error.validator.ClientValidate;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CredentialService {
 
-    private CredentialRepository credentialRepository;
-    private SessionTokenService sessionTokenService;
+    private final CredentialRepository credentialRepository;
+    private final SessionTokenService sessionTokenService;
 
     public CredentialService(CredentialRepository credentialRepository, SessionTokenService sessionTokenService) {
         this.credentialRepository = credentialRepository;
@@ -34,10 +33,9 @@ public class CredentialService {
     }
 
     private SessionToken login(Credential credential, char[] password) {
-        if (credential == null)
-            throw new RuntimeException("jasjdsajdaja");
-        if (!credential.getPassword().matches(password))
-            throw new RuntimeException("jajaaaaa");
+        ClientValidate.found(credential, "No credentials found.");
+        ClientValidate.isEqual(credential.getPassword(), password, "The password is incorrect.");
+
         return sessionTokenService.save(credential.getUsername(), credential.getEmail());
     }
 }

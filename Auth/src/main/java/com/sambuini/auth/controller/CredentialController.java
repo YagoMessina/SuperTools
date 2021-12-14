@@ -3,6 +3,7 @@ package com.sambuini.auth.controller;
 import com.sambuini.auth.dto.CredentialDTO;
 import com.sambuini.auth.dto.LoginDTO;
 import com.sambuini.auth.service.CredentialService;
+import com.sambuini.error.validator.ClientValidate;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,14 +31,16 @@ public class CredentialController {
     private ResponseEntity<?> login(@RequestBody LoginDTO loginDTO) {
         boolean isUsernameBlank = StringUtils.isBlank(loginDTO.getUsername());
         boolean isEmailBlank = StringUtils.isBlank(loginDTO.getEmail());
-        if(isUsernameBlank && isEmailBlank)
-            throw new RuntimeException("jaja");
-        if(!isUsernameBlank)
+
+        ClientValidate.isTrue(!(isUsernameBlank && isEmailBlank), "Missing username or email.");
+
+        if(!isUsernameBlank) {
             return ResponseEntity.ok(credentialService
-                    .loginWithUsername(loginDTO.getUsername(), loginDTO.getPassword()));
-        else
+                .loginWithUsername(loginDTO.getUsername(), loginDTO.getPassword()));
+        } else {
             return ResponseEntity.ok(credentialService
-                    .loginWithEmail(loginDTO.getEmail(), loginDTO.getPassword()));
+                .loginWithEmail(loginDTO.getEmail(), loginDTO.getPassword()));
+        }
     }
 
 

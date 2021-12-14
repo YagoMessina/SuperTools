@@ -8,11 +8,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Launcher" />
+        <module name="Error" />
         <module name="Auth" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Auth" target="1.8" />
+      <module name="Error" target="8" />
       <module name="Launcher" target="1.8" />
       <module name="SuperTools" target="1.8" />
     </bytecodeTargetLevel>
@@ -20,6 +22,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Auth" options="-parameters" />
+      <module name="Error" options="-parameters" />
       <module name="Launcher" options="-parameters" />
       <module name="SuperTools" options="-parameters" />
     </option>

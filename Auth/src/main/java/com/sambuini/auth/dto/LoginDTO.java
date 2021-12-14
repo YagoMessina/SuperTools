@@ -11,7 +11,7 @@ public class LoginDTO {
 
     private String email;
 
-    @NotNull(message = "Password cannot be null")
+    @NotNull(message = "Password cannot be null.")
     private char[] password;
 
 }

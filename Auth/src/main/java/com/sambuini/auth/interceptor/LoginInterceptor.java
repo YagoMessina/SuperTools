@@ -2,6 +2,7 @@ package com.sambuini.auth.interceptor;
 
 import com.sambuini.auth.entity.SessionToken;
 import com.sambuini.auth.service.SessionTokenService;
+import com.sambuini.error.validator.ClientValidate;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -22,13 +23,12 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        if(StringUtils.isBlank(request.getHeader(HEADER)))
-            throw new RuntimeException("jejeje");
-        SessionToken sessionToken = new SessionToken(request.getHeader(HEADER));
-        if(sessionToken.hasExpired())
-            throw new RuntimeException("jijiji");
-        if (!sessionTokenService.exists(sessionToken))
-            throw new RuntimeException("jujujuju");
+        String token = request.getHeader(HEADER);
+        ClientValidate.notBlank(token, "Missing auth-token.");
+
+        SessionToken sessionToken = sessionTokenService.find(token);
+        ClientValidate.isTrue(!sessionToken.hasExpired(), "The session already expired.");
+
         request.getSession().setAttribute("token", sessionToken);
         return true;
     }

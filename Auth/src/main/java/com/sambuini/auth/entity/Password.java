@@ -1,5 +1,6 @@
 package com.sambuini.auth.entity;
 
+import com.sambuini.error.validator.ServerValidate;
 import lombok.Data;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -33,8 +34,19 @@ public class Password {
     }
 
     public boolean matches(char[] rawPassword) {
+        ServerValidate.notNull(rawPassword, "The raw password cannot be null.");
+
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(rawPassword);
         return encoder.matches(stringBuilder, password);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(!(o instanceof char[])) return false;
+
+        char[] rawPassword = (char []) o;
+
+        return matches(rawPassword);
     }
 }

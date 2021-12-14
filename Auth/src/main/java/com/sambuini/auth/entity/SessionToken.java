@@ -1,6 +1,5 @@
 package com.sambuini.auth.entity;
 
-import javafx.util.converter.LocalDateTimeStringConverter;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -27,10 +26,6 @@ public class SessionToken {
 
     public SessionToken(String username, String email) {
         this.token = generateToken(username, email,  LocalDateTime.now().plusDays(1));
-    }
-
-    public SessionToken(String token) {
-        this.token = token;
     }
 
     private String generateToken(String username, String email, LocalDateTime expiresOn) {

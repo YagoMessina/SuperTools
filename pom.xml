@@ -6,7 +6,8 @@
 	<modules>
 		<module>Auth</module>
 		<module>Launcher</module>
-	</modules>
+        <module>Error</module>
+    </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>

@@ -1,6 +1,7 @@
 package com.sambuini.launcher;
 
 import com.sambuini.auth.AuthApplication;
+import com.sambuini.error.ErrorApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SuperToolsApplication {
 
 	public static void main(String[] args) {
-		Class<?>[] applications = {SuperToolsApplication.class, AuthApplication.class};
+		Class<?>[] applications = {SuperToolsApplication.class, AuthApplication.class, ErrorApplication.class};
 		SpringApplication.run(applications, args);
 	}
 
