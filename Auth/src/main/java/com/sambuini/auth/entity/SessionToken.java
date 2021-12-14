@@ -1,6 +1,10 @@
 package com.sambuini.auth.entity;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sambuini.error.validator.ServerValidate;
 import lombok.Data;
+import net.bytebuddy.utility.RandomString;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.nio.charset.StandardCharsets;
@@ -12,20 +16,22 @@ import java.util.Base64;
 @Data
 public class SessionToken {
 
+    private static final String DELIMITER = "###";
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "credential_id")
     private Long id;
 
     @Column(nullable = false)
     private String token;
 
-    private static final String DELIMITER = "###";
-
     SessionToken() {
     }
 
-    public SessionToken(String username, String email) {
-        this.token = generateToken(username, email,  LocalDateTime.now().plusDays(1));
+    public SessionToken(Credential credential) {
+        ServerValidate.notNull(credential.getId(), "The credential id cannot be null.");
+        this.id = credential.getId();
+        this.token = generateToken(credential.getUsername(), credential.getEmail(), LocalDateTime.now().plusDays(1));
     }
 
     private String generateToken(String username, String email, LocalDateTime expiresOn) {

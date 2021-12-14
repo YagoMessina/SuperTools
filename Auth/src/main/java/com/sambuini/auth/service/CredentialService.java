@@ -34,8 +34,10 @@ public class CredentialService {
 
     private SessionToken login(Credential credential, char[] password) {
         ClientValidate.found(credential, "No credentials found.");
-        ClientValidate.isEqual(credential.getPassword(), password, "The password is incorrect.");
+        ClientValidate.isTrue(credential.getPassword().matches(password),"The password is incorrect.");
 
-        return sessionTokenService.save(credential.getUsername(), credential.getEmail());
+        sessionTokenService.delete(credential.getId());
+
+        return sessionTokenService.save(credential);
     }
 }

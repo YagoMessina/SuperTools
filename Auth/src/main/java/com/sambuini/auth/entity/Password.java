@@ -40,13 +40,4 @@ public class Password {
         stringBuilder.append(rawPassword);
         return encoder.matches(stringBuilder, password);
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if(!(o instanceof char[])) return false;
-
-        char[] rawPassword = (char []) o;
-
-        return matches(rawPassword);
-    }
 }
