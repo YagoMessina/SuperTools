@@ -6,6 +6,6 @@ import com.sambuini.note.model.Note;
 public class NoteMapper {
 
     public static Note toModel(NoteDTO noteDTO) {
-        return new Note(noteDTO.getTitle(), noteDTO.getTitle(), noteDTO.getUsername());
+        return new Note(noteDTO.getTitle(), noteDTO.getBody(), noteDTO.getUsername());
     }
 }

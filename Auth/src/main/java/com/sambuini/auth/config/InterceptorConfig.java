@@ -1,6 +1,6 @@
 package com.sambuini.auth.config;
 
-import com.sambuini.auth.interceptor.LoginInterceptor;
+import com.sambuini.auth.interceptor.AuthInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -10,11 +10,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 public class InterceptorConfig extends WebMvcConfigurationSupport {
 
     @Autowired
-    private LoginInterceptor loginInterceptor;
+    private AuthInterceptor authInterceptor;
 
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginInterceptor).addPathPatterns("/api/**");
+        registry.addInterceptor(authInterceptor).addPathPatterns("/api/**");
         super.addInterceptors(registry);
     }
 }
