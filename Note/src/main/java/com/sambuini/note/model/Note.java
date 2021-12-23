@@ -1,6 +1,5 @@
 package com.sambuini.note.model;
 
-import jdk.jfr.DataAmount;
 import lombok.Data;
 
 import javax.persistence.*;

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.net.URI;
 
@@ -24,14 +25,12 @@ public class NoteController {
 
     @PostMapping
     private ResponseEntity<?> create(@RequestBody @Valid NoteDTO noteDTO,
-                                     HttpServletRequest request) {
-
-        SessionToken sessionToken = (SessionToken) request.getSession().getAttribute(SessionToken.TOKEN);
+                                     HttpSession session) {
+        SessionToken sessionToken = (SessionToken) session.getAttribute(SessionToken.TOKEN);
         String username = sessionToken.parseUsername();
 
-        noteDTO.setUsername(username);
+        Note note = noteService.create(noteDTO, username);
 
-        Note note = noteService.create(noteDTO);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(note.getId()).toUri();
         return ResponseEntity.created(location).build();

@@ -13,8 +13,6 @@ public class NoteDTO {
     @NotNull(message = "Title cannot be body.")
     private String body;
 
-    private String username;
-
     public NoteDTO() {
     }
 

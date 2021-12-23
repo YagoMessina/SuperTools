@@ -17,8 +17,8 @@ public class NoteService {
         this.noteRepository = noteRepository;
     }
 
-    public Note create(NoteDTO noteDTO) {
-        return noteRepository.save(NoteMapper.toModel(noteDTO));
+    public Note create(NoteDTO noteDTO, String username) {
+        return noteRepository.save(NoteMapper.toModel(noteDTO, username));
     }
 
     public List<Note> findAll() {
