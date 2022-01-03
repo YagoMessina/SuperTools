@@ -27,7 +27,7 @@
 
         <dependency>
             <groupId>com.sambuini</groupId>
-            <artifactId>Notes</artifactId>
+            <artifactId>Note</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

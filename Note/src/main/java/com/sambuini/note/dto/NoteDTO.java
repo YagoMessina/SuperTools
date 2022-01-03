@@ -2,22 +2,19 @@ package com.sambuini.note.dto;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Data
 public class NoteDTO {
 
     @NotNull(message = "Title cannot be null.")
+    @NotBlank(message = "Title cannot be blank.")
     private String title;
 
-    @NotNull(message = "Title cannot be body.")
+    @NotNull(message = "Body cannot be null.")
     private String body;
 
-    public NoteDTO() {
-    }
-
-    public NoteDTO(String title, String body) {
-        this.title = title;
-        this.body = body;
-    }
+    @NotNull(message = "Favourite cannot be null.")
+    private Boolean favourite;
 }

@@ -18,7 +18,7 @@ public class SessionToken {
 
     private static final String DELIMITER = "###";
 
-    public static final String TOKEN = "token";
+    public static final String TOKEN = "sessionToken";
 
     @Id
     @Column(name = "credential_id")
