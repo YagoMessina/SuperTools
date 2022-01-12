@@ -16,6 +16,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/api/note")
+@CrossOrigin(origins = "*")
 public class NoteController {
 
     private final NoteGroupService noteService;

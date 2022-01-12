@@ -13,5 +13,4 @@ public class LoginDTO {
 
     @NotNull(message = "Password cannot be null.")
     private char[] password;
-
 }

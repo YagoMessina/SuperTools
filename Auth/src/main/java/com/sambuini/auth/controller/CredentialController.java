@@ -24,7 +24,7 @@ public class CredentialController {
         this.credentialService = credentialService;
     }
 
-    private static final String MYSTIC_CODE = "ACM1PT";
+    private static final String MYSTIC_CODE = "010000010100001101001101001100010101000001010100";
 
     private static final String ACCESS_HEADER = "mysticCode";
 
@@ -38,6 +38,7 @@ public class CredentialController {
     }
 
     @PostMapping("/login")
+    @CrossOrigin(origins = "*")
     private ResponseEntity<?> login(@RequestBody LoginDTO loginDTO) {
         boolean isUsernameBlank = StringUtils.isBlank(loginDTO.getUsername());
         boolean isEmailBlank = StringUtils.isBlank(loginDTO.getEmail());

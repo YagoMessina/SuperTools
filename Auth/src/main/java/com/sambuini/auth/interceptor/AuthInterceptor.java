@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class AuthInterceptor implements HandlerInterceptor {
 
-    private static final String HEADER = "auth-token";
+    private static final String HEADER = "Auth-Token";
 
     private final SessionTokenService sessionTokenService;
 
@@ -23,7 +23,7 @@ public class AuthInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         String token = request.getHeader(HEADER);
-        ClientValidate.notBlank(token, "Missing auth-token.");
+        ClientValidate.notBlank(token, "Missing Auth-Token.");
 
         SessionToken sessionToken = sessionTokenService.find(token);
         ClientValidate.isTrue(!sessionToken.hasExpired(), "The session already expired.");
