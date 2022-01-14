@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -29,6 +31,15 @@ public class NoteGroupService {
             noteGroup = noteGroupRepository.save(new NoteGroup(username));
         }
         return noteGroup.addNote(NoteMapper.toModel(noteDTO));
+    }
+
+    public Note findById(String username, Long id) {
+        NoteGroup noteGroup = noteGroupRepository.findByUsername(username);
+        ClientValidate.found(noteGroup, "Username does not exist.");
+        List<Note> notes = noteGroup.getNotes();
+        Note note = notes.stream().filter(n -> n.getId().equals(id)).findFirst().orElse(null);
+        ClientValidate.found(note, "Note with given id does not exist.");
+        return note;
     }
 
     public List<Note> findAll(String username) {

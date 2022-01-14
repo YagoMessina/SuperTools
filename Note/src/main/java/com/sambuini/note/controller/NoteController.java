@@ -45,6 +45,14 @@ public class NoteController {
         return ResponseEntity.ok(noteService.findAll(username));
     }
 
+    @GetMapping("/{id}")
+    private ResponseEntity<?> getById(HttpSession session, @PathVariable(value = "id") Long id) {
+        SessionToken sessionToken = (SessionToken) session.getAttribute(SessionToken.TOKEN);
+        String username = sessionToken.parseUsername();
+
+        return ResponseEntity.ok(noteService.findById(username, id));
+    }
+
     @DeleteMapping
     private ResponseEntity<?> delete(@RequestBody @Valid NoteDTO noteDTO,
                                      @SessionAttribute SessionToken sessionToken) {
