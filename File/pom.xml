@@ -9,36 +9,21 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>Launcher</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>com.sambuini</groupId>
-            <artifactId>Auth</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
+    <artifactId>File</artifactId>
 
+    <dependencies>
+        <!-- Own dependencies -->
         <dependency>
             <groupId>com.sambuini</groupId>
             <artifactId>Error</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>com.sambuini</groupId>
-            <artifactId>Note</artifactId>
+            <artifactId>Auth</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.sambuini</groupId>
-            <artifactId>File</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
-
 
 </project>

@@ -8,7 +8,8 @@
 		<module>Launcher</module>
         <module>Error</module>
 		<module>Note</module>
-	</modules>
+        <module>File</module>
+    </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>

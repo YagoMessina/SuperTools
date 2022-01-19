@@ -5,7 +5,6 @@ import com.sambuini.note.dto.NoteDTO;
 import com.sambuini.note.dto.NoteUpdateDTO;
 import com.sambuini.note.model.Note;
 import com.sambuini.note.service.NoteGroupService;
-import org.hibernate.Session;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
