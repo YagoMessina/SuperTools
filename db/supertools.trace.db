@@ -1,0 +1,4 @@
+2022-01-19 21:23:34 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "CREDENTIAL" no encontrada
+Table "CREDENTIAL" not found; SQL statement:
+insert into credential (id, email, password, username) values (null, ?, ?, ?) [42102-200]

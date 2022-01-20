@@ -1,7 +1,8 @@
 package com.sambuini.file.controller;
 
-import com.sambuini.auth.entity.SessionToken;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/file")
@@ -11,5 +12,14 @@ public class FileController {
     @GetMapping
     private String get() {
         return "File";
+    }
+
+
+    @PostMapping(consumes = {"multipart/form-data"})
+    @CrossOrigin(origins = "*")
+    public String importQuestion( @RequestParam("uploadedFileName")
+                                         MultipartFile multipart, ModelMap model) {
+
+        return "importQuestion";
     }
 }
